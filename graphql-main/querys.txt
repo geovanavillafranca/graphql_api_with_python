@@ -1,0 +1,77 @@
+GraphQL is a query language for APIs and a server-side runtime that allows clients to request only the data that they need from the API. 
+GraphQL API expose endpoint like: http://127.0.0.1:5000/graphql and clients would send different queries to that endpoint to get what they want. 
+
+
+
+# Create Todo
+
+mutation newTodo{
+  createTodo(description: "Go to the dentist", dueDate:"28-12-2022"){
+    success
+    errors
+    todo {
+      id
+      description
+      completed
+    }
+  }
+}
+
+
+# Get all Todos
+
+query fetchAllTodos {
+  todos {
+    success
+    errors
+    todos {
+      description
+      completed
+      id
+    }
+  }
+}
+
+
+# Get Todo with id
+
+query fetchTodo {
+  todo(todoId: "1") {
+    success
+    errors
+    todo { id completed description dueDate }
+  }
+}
+
+
+# Mark Done as taks completed
+
+mutation markDone {
+  markDone(todoId: "1") {
+    success
+    errors
+    todo { id completed description dueDate }
+  }
+}
+
+
+
+# Delete Todo
+
+mutation {
+  deleteTodo(todoId: "1") {
+    success
+    errors
+  }
+}
+
+
+# Update due date
+
+mutation updateTodo {
+  updateDueDate(todoId:"2", newDate: "03-01-2023") {
+    success
+    errors
+
+  }
+}
